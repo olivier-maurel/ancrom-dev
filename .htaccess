@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+AddType video/ogg  .ogv
+AddType video/mp4  .mp4
+AddType video/webm .webm
