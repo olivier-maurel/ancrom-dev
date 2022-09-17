@@ -31,7 +31,7 @@
 						<!--begin::Activities-->
 						<div class="d-flex align-items-center mx-4 mx-lg-5">
 							<!--begin::Drawer toggle-->
-							<a href="#" class="btn btn-icon btn-custom w-lg-50px h-lg-50px w-50px h-50px w-sm-90px h-sm-90px flex-column" data-page="profil" data-pos="left" id="kt_activities_toggle">
+							<a class="btn btn-icon btn-custom w-lg-50px h-lg-50px w-50px h-50px w-sm-90px h-sm-90px flex-column" data-page="profil" data-pos="left" id="kt_activities_toggle">
 								<!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
 								<span class="svg-icon svg-icon-1 d-flex align-items-center flex-column">
 									<i class="fa fa-user"></i>
@@ -45,7 +45,7 @@
 						<!--begin::Activities-->
 						<div class="d-flex align-items-center  mx-4 mx-lg-5">
 							<!--begin::Drawer toggle-->
-							<a href="#" class="btn btn-icon btn-custom w-lg-50px h-lg-50px w-50px h-50px w-sm-90px h-sm-90px" data-page="project" data-pos="bottom" id="kt_activities_toggle">
+							<a class="btn btn-icon btn-custom w-lg-50px h-lg-50px w-50px h-50px w-sm-90px h-sm-90px" data-page="project" data-pos="bottom" id="kt_activities_toggle">
 								<!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
 								<span class="svg-icon svg-icon-1 d-flex align-items-center flex-column">
 									<i class="fa fa-flask"></i>
@@ -59,7 +59,7 @@
 						<!--begin::Activities-->
 						<div class="d-flex align-items-center  mx-4 mx-lg-5">
 							<!--begin::Drawer toggle-->
-							<a href="#" class="btn btn-icon btn-custom w-lg-50px h-lg-50px w-50px h-50px w-sm-90px h-sm-90px" data-page="contact" data-pos="right" id="kt_activities_toggle">
+							<a class="btn btn-icon btn-custom w-lg-50px h-lg-50px w-50px h-50px w-sm-90px h-sm-90px" data-page="contact" data-pos="right" id="kt_activities_toggle">
 								<!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
 								<span class="svg-icon svg-icon-1 d-flex align-items-center flex-column">
 									<i class="fa fa-envelope"></i>
@@ -91,12 +91,18 @@
 
 				</div>
 			</div>
-			<div class="position-fixed top-0 start-0" style="height: 30px;">
-				<a href="#" class="btn" data-page="index">
-					Cancel
-				</a>
+			<div class="position-fixed d-flex justify-content-between top-0 start-0 w-100" style="height: 30px;background-color: rgba(61, 61, 61, 0.904);">
+				<div class="col-4">
+					<a href="#" class="btn" data-page="index">
+						Cancel
+					</a>
+				</div>
+				<div class="col-4 d-flex justify-content-center align-items-center">
+					<span id="datetime" class="btn btn-sm btn-os text-white-soft text-code fw-bold" style="white-space:pre;"></span>
+				</div>
+				<div class="col-4"></div>
 			</div>
-			<div id="mapctrl" class="text-code float-page init-page text-white" style="background-color: #0003;">
+			<div id="mapctrl" class="text-code float-page init-page text-white d-none" style="background-color: #0003;">
 				<div class="d-flex flex-column justify-content-center align-items-center h-100 overflow-hidden">
 					<h1>TUTORIAL PLAN SITE</h1>
 					<div class="d-flex flex-column">
@@ -144,6 +150,14 @@
 						$('a[data-pos=right]').first().click();
 				else if (e.keyCode === 40 ) // Bottom && $('#profil').hasClass('float-page-center') === false && $('#contact').hasClass('float-page-center') === false
 					$('a[data-pos=bottom]').first().click();
+			}
+			function setDatetime() {
+				var dt = new Date();
+				let time = new Intl.DateTimeFormat('us-US', {hour: 'numeric', minute: 'numeric'}).format(dt);
+				let month = new Intl.DateTimeFormat('us-US', {month: 'short'}).format(dt);
+				let text = month+' '+dt.getDate()+"     "+time;
+				if (text !== $('#datetime').text())
+					$('#datetime').html(text);
 			}
 
 			$('a[data-page]').on('click', function(){
@@ -193,11 +207,17 @@
 				if (!e.ctrlKey) return;
 				timer = setTimeout(function(){
 					$('#mapctrl').removeClass('d-none');
-				},800);
-			}).on("keyup",function(){
+				},600);
+			}).on("keyup",function(e){
 				clearTimeout(timer);
+				if (e.keyCode === 17)
 				$('#mapctrl').addClass('d-none');
 			});
+
+			setDatetime();
+			setInterval(function(){
+				setDatetime();
+			}, 3000);
 		</script>
     </body>
 </html>

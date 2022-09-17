@@ -37,7 +37,19 @@ body {
 .topbar .btn.btn-custom.btn-active .focus {
     opacity: 1;
 }
-
+.btn.btn-os {
+    border-radius: 50px;
+    transition: .2s;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 .9rem !important;
+}
+.btn.btn-os:hover {
+    background-color: #fff1;
+    color: #fff;
+}
 .bg-pos-left {
     background-position: 57% 50% !important;
 }
@@ -138,4 +150,7 @@ body {
 }
 .text-pink {
     color: #e39dc3 !important;
+}
+.text-white-soft {
+    color: #fffd;
 }
