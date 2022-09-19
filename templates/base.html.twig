@@ -10,6 +10,10 @@
         <link href="{{ asset('css/widgets.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/font-icons.min.css') }}" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+		<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -218,6 +222,30 @@
 			setInterval(function(){
 				setDatetime();
 			}, 3000);
+
+			
+			$(document.body).on('click', 'span.flatpickr-day', function(){
+				$('.flatpickr-calendar').first().addClass('open');
+			});
+			flatpickr("#datetime", {
+				position: 'auto center', 
+				onOpen: function(){
+					$('#datetime').on('click', function(){
+						if ($(this).hasClass('flatpickr-input active')) {
+							$('.flatpickr-calendar').first().removeClass('open');
+							$(this).removeClass('active');
+						} else {
+							$('.flatpickr-calendar').first().addClass('open');
+							$(this).addClass('active');
+						}
+					});
+					$('.flatpickr-day').on('click', function(e){
+						e.stopPropagation();
+					});
+				},
+				monthSelectorType: 'static',
+			});
+			
 		</script>
     </body>
 </html>
