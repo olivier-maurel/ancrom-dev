@@ -11,10 +11,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
+       
+        $server = [
+            'host' => $request->server->get('HTTP_HOST'),
+            'status' => $request->server->get('REDIRECT_STATUS'),
+            'time' => (microtime(true) - $request->server->get('REQUEST_TIME_FLOAT')) * (1645*2),
+            'agent' => $request->server->get('HTTP_USER_AGENT'),
+            'protocol' => explode('/', $request->server->get('SERVER_PROTOCOL'))[0],
+            'addrip' => $request->server->get('REMOTE_ADDR'),
+            'method' => $request->server->get('REQUEST_METHOD'),
+            'cache' => $request->server->get('HTTP_CACHE_CONTROL'),
+        ];
+
         return $this->render('index/index.html.twig', [
-            'controller_name' => 'IndexController',
+            'server' => $server
         ]);
     }
 

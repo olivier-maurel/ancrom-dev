@@ -45,11 +45,11 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0 .9rem !important;
-    color: #fff;
+    color: #fff !important;
 }
 .btn.btn-os:hover {
-    background-color: #fff1;
-    color: #fff;
+    background-color: #fff1 !important;
+    color: #fff !important;
 }
 .bg-pos-left {
     background-position: 57% 50% !important;
@@ -99,7 +99,7 @@ body {
     top: 100%;
 }
 .text-code *{
-    font-family: monospace !important;
+    font-family: var(--bs-btn-font-family) !important;
 }
 .text-code .min {
     width: 1%;
@@ -156,7 +156,7 @@ body {
     color: #fffd;
 }
 .flatpickr-calendar {
-    margin-top: .3rem;
+    margin-top: 0.5rem !important;
     box-shadow: none !important;
     padding: 3rem;
     overflow: hidden;
@@ -164,6 +164,7 @@ body {
     font-size: small !important;
     font-family: var(--bs-btn-font-family) !important;
     width: 365px !important;
+    border-radius: 0.95rem !important;
 }
 .flatpickr-day, .flatpickr-current-month * {
     font-weight: bold !important;
@@ -184,4 +185,10 @@ body {
     display: flex !important;
     justify-content: center;
     align-items: center;
+}
+.win-app {
+    background-color: rgba(61, 61, 61, 0.904);
+}
+.border-white-soft {
+    border-color: #fff1 !important;
 }
