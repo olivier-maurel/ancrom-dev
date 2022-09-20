@@ -1,0 +1,42 @@
+<script>
+    function returnCenterPage() {
+        $('body').attr('data-float-page', 'off');
+        $('.float-page-center').removeClass('float-page-center');
+        $('a[data-page]').removeClass('btn-active');
+        $('.window[data-pos]').removeClass('window-active');
+        $('.window[data-pos=off]').addClass('window-active');
+        $('body').removeClass(function (index, css) {
+            return (css.match (/\bbg-pos-\S+/g) || []).join(' '); // removes anything that starts with "page-"
+        });
+    }
+    
+    function eventKeyUp(e) {
+
+        if (e.keyCode === 27 || e.keyCode === 38 && $('#project').hasClass('float-page-center') === true) // Escape
+            returnCenterPage();
+
+        if (!e.ctrlKey) 
+            return;
+        else if (e.keyCode === 37) // Left
+            if ($('body').attr('data-float-page') === 'right')
+                returnCenterPage();
+            else
+                $('a[data-pos=left]').first().click();
+        else if (e.keyCode === 39) // Right
+            if ($('body').attr('data-float-page') === 'left')
+                returnCenterPage();
+            else
+                $('a[data-pos=right]').first().click();
+        else if (e.keyCode === 40 ) // Bottom && $('#profil').hasClass('float-page-center') === false && $('#contact').hasClass('float-page-center') === false
+            $('a[data-pos=bottom]').first().click();
+    }
+
+    function setDatetime() {
+        var dt = new Date();
+        let time = new Intl.DateTimeFormat('us-US', {hour: 'numeric', minute: 'numeric'}).format(dt);
+        let month = new Intl.DateTimeFormat('us-US', {month: 'short'}).format(dt);
+        let text = month+' '+dt.getDate()+"     "+time;
+        if (text !== $('#datetime').text())
+            $('#datetime').html(text);
+    }
+</script>

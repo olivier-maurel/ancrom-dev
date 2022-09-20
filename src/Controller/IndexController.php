@@ -17,7 +17,6 @@ class IndexController extends AbstractController
         $server = [
             'host' => $request->server->get('HTTP_HOST'),
             'status' => $request->server->get('REDIRECT_STATUS'),
-            'time' => (microtime(true) - $request->server->get('REQUEST_TIME_FLOAT')) * (1645*2),
             'agent' => $request->server->get('HTTP_USER_AGENT'),
             'protocol' => explode('/', $request->server->get('SERVER_PROTOCOL'))[0],
             'addrip' => $request->server->get('REMOTE_ADDR'),
@@ -31,12 +30,30 @@ class IndexController extends AbstractController
     }
 
     #[Route('/change/page', name: 'app_change_page')]
-    public function contact(Request $request): Response
+    public function changePage(Request $request): Response
     {
         $page = $request->query->get('page');
 
         if (is_file('../templates/index/_'.$page.'.html.twig'))
             $html = $this->renderView('index/_'.$page.'.html.twig');
+        else 
+            $html = false;
+
+        return new JsonResponse([
+            'html' => $html
+        ]);
+    }
+
+    #[Route('/change/window', name: 'app_change_window')]
+    public function changeWindow(Request $request): Response
+    {
+        $app = $request->query->get('app');
+
+        if (is_dir('../templates/window/'.$app))
+            $html = [
+                'head' => $this->renderView('window/'.$app.'/_head.html.twig'),
+                'body' => $this->renderView('window/'.$app.'/_body.html.twig')
+            ];
         else 
             $html = false;
 

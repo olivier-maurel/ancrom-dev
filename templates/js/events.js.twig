@@ -1,0 +1,101 @@
+<script>
+    $('#win_app_close').on('click', function(){
+        $('#win_app').addClass('d-none');
+    });
+    $('.btn-win-app').on('click', function(){
+        let app = $(this).data('app');
+
+        $.get("{{ path('app_change_window') }}", {app: app}, function(data){
+            
+            $('#win_app_head').html(data.html.head);
+            $('#win_app_body').html(data.html.body);
+            $('#win_app').removeClass('d-none');
+            
+        });
+    });
+
+    
+
+    $('a[data-page]').on('click', function(){
+
+        let page = $(this).data('page');
+        let position = $(this).data('pos');
+        
+        console.log($('body').attr('data-float-page') === position);
+        if ($('body').attr('data-float-page') === position) {
+            $('.window[data-pos]').removeClass('window-active');
+            $('.window[data-pos=off]').addClass('window-active');
+            $(this).removeClass('btn-active');
+        } else {
+            $('.window[data-pos]').removeClass('window-active');
+            $('.window[data-pos='+position+']').addClass('window-active');
+            $('a[data-page]').removeClass('btn-active');
+            $(this).addClass('btn-active');
+        }
+            
+
+        if ($('body').attr('data-float-page') !== 'on' && $('#'+$(this).data('page')).hasClass('float-page-center'))
+                return returnCenterPage();
+
+        $.get("{{ path('app_change_page') }}", {page: $(this).data('page')}, function(data){
+            if (data.html !== false)
+                $('#'+page).find('div').html(data.html);
+
+            $('.float-page').removeClass('float-page-center');
+            $('#'+page).addClass('float-page-center');
+            $('body').removeClass(function (index, css) {
+                return (css.match (/\bbg-pos-\S+/g) || []).join(' '); // removes anything that starts with "page-"
+            });
+            $('body').attr('data-float-page', position).addClass('bg-pos-'+position);
+            
+            
+        });
+
+    });
+
+    $(document.body).on('keyup', function(e){
+        eventKeyUp(e);
+    });
+
+    let timer = 0;
+    $(document.body).on("keydown",function(e){
+        clearTimeout(timer);
+        if (!e.ctrlKey) return;
+        timer = setTimeout(function(){
+            $('#mapctrl').removeClass('d-none');
+        },600);
+    }).on("keyup",function(e){
+        clearTimeout(timer);
+        if (e.keyCode === 17)
+        $('#mapctrl').addClass('d-none');
+    });
+
+    setDatetime();
+    setInterval(function(){
+        setDatetime();
+    }, 3000);
+
+    
+    $(document.body).on('click', 'span.flatpickr-day', function(){
+        $('.flatpickr-calendar').first().addClass('open');
+    });
+    flatpickr("#datetime", {
+        position: 'auto center', 
+        onOpen: function(){
+            $('#datetime').on('click', function(){
+                if ($(this).hasClass('flatpickr-input active')) {
+                    $('.flatpickr-calendar').first().removeClass('open');
+                    $(this).removeClass('active');
+                } else {
+                    $('.flatpickr-calendar').first().addClass('open');
+                    $(this).addClass('active');
+                }
+            });
+            $('.flatpickr-day').on('click', function(e){
+                e.stopPropagation();
+            });
+        },
+        monthSelectorType: 'static',
+    });
+    
+</script>
