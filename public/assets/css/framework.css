@@ -45547,7 +45547,7 @@ html:not([data-theme=dark]) {
   --kt-page-bg: #56077E;
   --kt-header-link-bg-color: rgba(255, 255, 255, 0.1);
   --kt-content-bg: #ECEEF7;
-  --kt-page-bg-image: url("../img/page-bg.jpg");
+  --kt-page-bg-image: url("../img/bg/bg-8.jpg");
   --kt-toolbar-bg-color: #ffffff;
   --kt-topbar-btn-bg-color: rgba(255, 255, 255, 0.1);
   --kt-topbar-btn-bg-color-active: rgba(255, 255, 255, 0.25);
@@ -45557,7 +45557,7 @@ html:not([data-theme=dark]) {
   --kt-page-bg: #56077E;
   --kt-header-link-bg-color: rgba(255, 255, 255, 0.1);
   --kt-content-bg: #151521;
-  --kt-page-bg-image: url("../img/page-bg.jpg");
+  --kt-page-bg-image: url("../img/bg/bg-8.jpg");
   --kt-toolbar-bg-color: #1E1E2D;
   --kt-topbar-btn-bg-color: rgba(255, 255, 255, 0.1);
   --kt-topbar-btn-bg-color-active: rgba(255, 255, 255, 0.25);
@@ -45924,7 +45924,7 @@ body:not(.bg-body) {
     position: fixed;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url("../img/page-bg.jpg");
+    background-image: url("../img/bg/bg-8.jpg");
     top: 0;
     right: 0;
     left: 0;

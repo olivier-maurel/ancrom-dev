@@ -2,8 +2,9 @@
     $('#win_app_close').on('click', function(){
         $('#win_app').addClass('d-none');
     });
-    $('.btn-win-app').on('click', function(){
+    $(document.body).on('click', '.btn-win-app', function(){
         let app = $(this).data('app');
+        $('.menu-setting').removeClass('show');
 
         $.get("{{ path('app_change_window') }}", {app: app}, function(data){
             
@@ -12,6 +13,15 @@
             $('#win_app').removeClass('d-none');
             
         });
+    });
+
+    $(document.body).on('click', '.img-change-bg', function(){
+        let path = 'url(\''+$(this).children('img').attr('src')+'\')';
+        $.get("{{ path('app_change_setting') }}", {setting: JSON.stringify({background: path})}, function(data){
+            console.log('data');
+        });
+
+        $('#kt_body').css('background-image', path);
     });
 
     

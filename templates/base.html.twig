@@ -23,7 +23,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body id="kt_body" class="toolbar-enabled overflow-hidden" data-kt-sticky-header="on" data-kt-header="on" data-kt-scrolltop="on" data-float-page="off">        
+    <body id="kt_body" class="toolbar-enabled overflow-hidden bg-body" data-kt-sticky-header="on" data-kt-header="on" data-kt-scrolltop="on" data-float-page="off" style="background-image: {{ session.setting.background }};">        
         <div id="container" class="d-flex flex-column flex-root">
 			<!--begin::Page-->
 			<div class="page d-flex flex-column flex-column-fluid">
@@ -31,7 +31,7 @@
 				<!--begin::Wrapper-->
 				<div class="wrapper d-flex flex-column flex-row-fluid container-xxl h-100 align-items-center justify-content-end " id="kt_wrapper">
 					<!--begin::Main-->
-					<div class="topbar py-2 d-flex align-items-stretch flex-shrink-0" id="kt_topbar">
+					<div class="topbar py-2 d-flex align-items-stretch flex-shrink-0" id="kt_topbar" style="z-index: 999;">
 						<!--begin::Activities-->
 						<div class="d-flex align-items-center mx-4 mx-lg-5">
 							<!--begin::Drawer toggle-->
@@ -109,7 +109,7 @@
 						<!-- <i class="fa fa-bars text-white"></i> --> Settings
 					</span>
 						
-					<div class="menu menu-sub menu-sub-dropdown menu-column w-250px w-lg-325px win-app position-absolute mt-2 p-6" data-kt-menu="true">
+					<div class="menu menu-sub menu-sub-dropdown menu-column w-250px w-lg-325px win-app menu-setting position-absolute mt-2 p-6" data-kt-menu="true">
 						<div class="d-flex justify-content-center align-items-center text-code text-white-soft row">
 							<div class="border-bottom border-white-soft d-flex flex-column justify-content-center align-items-center col-12 py-3 my-3">
 								<h4>ancrom.com</h4>
@@ -135,19 +135,19 @@
 							</div>
 						</div>
 						<div class="border-top border-white-soft py-3 my-3 row">
-							<span class="btn btn-sm btn-os text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_background" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
 								<i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i>Backgrounds
 							</span>
-							<span class="btn btn-sm btn-os text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_darkmode" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
 								<i class="fa fa-moon me-1 w-20px" style="font-size: small !important"></i>Dark mode
 							</span>
-							<span class="btn btn-sm btn-os text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_language" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
 								<i class="fa fa-globe me-1 w-20px" style="font-size: small !important"></i>Languages
 							</span>
-							<span class="btn btn-sm btn-os text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_shortcut" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
 								<i class="fa fa-keyboard me-1 w-20px" style="font-size: small !important"></i>Shortcuts
 							</span>
-							<span class="btn btn-sm btn-os text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_information" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
 								<i class="fa fa-question me-1 w-20px" style="font-size: small !important"></i>Informations
 							</span>
 						</div>
@@ -170,14 +170,14 @@
 					</div>
 				</div>
 			</div>
-			<div id="win_app" class="float-page init-page d-flex align-items-center justify-content-center d-none">
-				<div class="col-lg-7 col-md-9 col-sm-11 m-auto">
-					<div class="card win-app p-1">
-						<div class="card-head d-flex justify-content-between">
-							<div id="win_app_head" class="col-11">
+			<div id="win_app" class="float-page init-page d-flex d-none" style="padding-top: 7rem;">
+				<div class="col-lg-7 col-md-9 col-sm-12 mx-auto">
+					<div class="card win-app p-1" style="min-height: 40vh;">
+						<div class="card-head d-flex justify-content-between position-relative">
+							<div id="win_app_head" class="col-12">
 
 							</div>
-							<div class="col-1 d-flex justify-content-end">
+							<div class="position-absolute top-0 end-0 d-flex justify-content-end">
 								<span id="win_app_close" class="btn btn-sm btn-os text-white-soft text-code fw-bold">
 									<i class="fa fa-times text-white-soft opacity-75 p-0" style="font-size: 1.2rem !important;"></i>
 								</span>

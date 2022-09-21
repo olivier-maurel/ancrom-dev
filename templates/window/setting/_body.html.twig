@@ -1,0 +1,96 @@
+<div class="d-flex">
+    <div class="col-4">
+        <ul class="list-unstyled">
+            <li>
+                <span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_background" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                    <i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i>Backgrounds
+                </span>
+            </li>
+            <li>
+                <span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_darkmode" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                    <i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i>Dark mode
+                </span>
+            </li>
+            <li>
+                <span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_information" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                    <i class="fa fa-question me-1 w-20px" style="font-size: small !important"></i>Informations
+                </span>
+            </li>
+            <li>
+                <span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_language" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                    <i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i>Language
+                </span>
+            </li>
+            <li>
+                <span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_shortcut" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                    <i class="fa fa-keyboard me-1 w-20px" style="font-size: small !important"></i>Shortcuts
+                </span>
+            </li>   
+        </ul>
+    </div>
+    <div class="col-8">
+        <div class="{{ (param != 'background') ? 'd-none' }}">
+            <div class="mb-5">
+                <span class="h6 mb-0 d-block text-white-soft">Background</span>
+                <span class="text-muted">Select your background</span>
+            </div>
+            <div class="row d-flex p-5" style="background-color: #ffffff03;">
+                <div class="col-3 d-flex justify-content-center my-9">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                        <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-8.jpg') }}">
+                    </div>  
+                </div>
+                <div class="col-3 d-flex justify-content-center my-9">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                        <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-7.jpg') }}">
+                    </div>  
+                </div>
+                <div class="col-3 d-flex justify-content-center my-9">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                        <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-6.jpg') }}">
+                    </div>  
+                </div>
+                <div class="col-3 d-flex justify-content-center my-9">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                        <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-5.jpg') }}">
+                    </div>  
+                </div>
+                <div class="col-3 d-flex justify-content-center my-9">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                        <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-4.jpg') }}">
+                    </div>  
+                </div>
+                <div class="col-3 d-flex justify-content-center my-9">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                        <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-3.jpg') }}">
+                    </div>  
+                </div>
+                <div class="col-3 d-flex justify-content-center my-9">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                        <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-2.jpg') }}">
+                    </div>  
+                </div>
+                <div class="col-3 d-flex justify-content-center my-9">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                        <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-1.jpg') }}">
+                    </div>  
+                </div>
+            </div>
+            <div class="text-end mt-5">
+                <div class="btn btn-sm btn-os">Apply</div>
+            </div>
+        </div>
+        <div class="{{ (param != 'information') ? 'd-none' }}">
+            <h1>information</h1>
+        </div>
+        <div class="{{ (param != 'shortcut') ? 'd-none' }}">
+            <h1>shortcut</h1>
+        </div>
+        <div class="{{ (param != 'language') ? 'd-none' }}">
+            <h1>language</h1>
+        </div>
+        <div class="{{ (param != 'darkmode') ? 'd-none' }}">
+            <h1>darkmode</h1>
+        </div>
+    </div>
+</div>

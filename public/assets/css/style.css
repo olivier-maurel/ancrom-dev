@@ -4,8 +4,8 @@
     height: 100%;
 }
 body {
-    background-size: 110%;
-    background-position: 50% 50%;
+    background-size: cover;
+    background-position: center;
     transition: .6s;
 }
 .topbar {
@@ -50,15 +50,6 @@ body {
 .btn.btn-os:hover {
     background-color: #fff1 !important;
     color: #fff !important;
-}
-.bg-pos-left {
-    background-position: 57% 50% !important;
-}
-.bg-pos-right {
-    background-position: 43% 50% !important;
-}
-.bg-pos-bottom {
-    background-position: 50% 53% !important;
 }
 .float-page {
     position: absolute;

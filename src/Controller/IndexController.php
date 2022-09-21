@@ -6,12 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(Request $request): Response
+    public function index(Request $request, Session $session): Response
     {
        
         $server = [
@@ -25,7 +26,8 @@ class IndexController extends AbstractController
         ];
 
         return $this->render('index/index.html.twig', [
-            'server' => $server
+            'server' => $server,
+            'session' => $session->all()
         ]);
     }
 
@@ -47,18 +49,36 @@ class IndexController extends AbstractController
     #[Route('/change/window', name: 'app_change_window')]
     public function changeWindow(Request $request): Response
     {
-        $app = $request->query->get('app');
+        $app     = $request->query->get('app');
+        $explode = explode('_',$app);
+
+        if (count($explode) > 1)
+            $app    = $explode[0];
+
+        $param  = ['param' => ((isset($explode[1])) ? $explode[1] : null)];
 
         if (is_dir('../templates/window/'.$app))
             $html = [
-                'head' => $this->renderView('window/'.$app.'/_head.html.twig'),
-                'body' => $this->renderView('window/'.$app.'/_body.html.twig')
+                'head' => $this->renderView('window/'.$app.'/_head.html.twig', $param),
+                'body' => $this->renderView('window/'.$app.'/_body.html.twig', $param)
             ];
         else 
             $html = false;
 
         return new JsonResponse([
             'html' => $html
+        ]);
+    }
+
+    #[Route('/change/setting', name: 'app_change_setting')]
+    public function changeSetting(Request $request, Session $session): Response
+    {
+        $setting = (array) json_decode($request->query->get('setting'));
+
+        $session->set('setting', [key($setting) => $setting[key($setting)]]);
+
+        return new JsonResponse([
+            'html' => 'ok'
         ]);
     }
 }
