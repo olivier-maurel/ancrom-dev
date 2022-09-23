@@ -23,7 +23,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body id="kt_body" class="toolbar-enabled overflow-hidden bg-body" data-kt-sticky-header="on" data-kt-header="on" data-kt-scrolltop="on" data-float-page="off" style="background-image: {{ (setting is defined) ? setting.background : 'url('~ asset('img/bg/bg-8.jpg') ~')' }};">        
+    <body id="kt_body" class="toolbar-enabled overflow-hidden bg-body" data-kt-sticky-header="on" data-kt-header="on" data-kt-scrolltop="on" data-float-page="off" style="background-image: {{ (setting.background is defined) ? setting.background : 'url('~ asset('img/bg/bg-8.jpg') ~')' }};">        
         <div id="container" class="d-flex flex-column flex-root">
 			<!--begin::Page-->
 			<div class="page d-flex flex-column flex-column-fluid">
