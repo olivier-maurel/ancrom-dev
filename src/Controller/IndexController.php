@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,9 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndexController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    public function index(Request $request, Session $session): Response
+    public function index(Request $request): Response
     {
-       
         $server = [
             'host' => $request->server->get('HTTP_HOST'),
             'status' => $request->server->get('REDIRECT_STATUS'),
@@ -27,7 +27,7 @@ class IndexController extends AbstractController
 
         return $this->render('index/index.html.twig', [
             'server' => $server,
-            'session' => $session->all()
+            'setting' => $request->cookies->all()
         ]);
     }
 
@@ -75,7 +75,15 @@ class IndexController extends AbstractController
     {
         $setting = (array) json_decode($request->query->get('setting'));
 
-        $session->set('setting', [key($setting) => $setting[key($setting)]]);
+        $cookie = new Cookie(
+            key($setting),
+            $setting[key($setting)],
+            strtotime('+30 days', strtotime('now'))
+        );
+
+        $res = new Response();
+        $res->headers->setCookie( $cookie );
+        $res->send();
 
         return new JsonResponse([
             'html' => 'ok'
