@@ -1,29 +1,46 @@
 <script>
     $('#win_app_close').on('click', function(){
-        $('#win_app').addClass('d-none');
+        $('#win_app').removeClass('show');
     });
     $(document.body).on('click', '.btn-win-app', function(){
         let app = $(this).data('app');
         $('.menu-setting').removeClass('show');
 
+        if ($('#win_app').attr('data-current-app') === app && $(this).parent('li').length < 1)
+            return $('#win_app').removeClass('show').removeAttr('data-current-app');
+
         $.get("{{ path('app_change_window') }}", {app: app}, function(data){
             
             $('#win_app_head').html(data.html.head);
             $('#win_app_body').html(data.html.body);
-            $('#win_app').removeClass('d-none');
+            $('#win_app').addClass('show').attr('data-current-app', app);
             
         });
     });
 
     $(document.body).on('click', '.img-change-bg', function(){
-        let path = 'url(\''+$(this).children('img').attr('src')+'\')';
-        $.get("{{ path('app_change_setting') }}", {setting: JSON.stringify({background: path})}, function(data){
-            console.log('data');
+        let background = $(this).data('bg');
+        $.get("{{ path('app_change_setting') }}", {setting: JSON.stringify({background: background})}, function(data){
+            console.log(data);
         });
-
-        $('#kt_body').css('background-image', path);
+        $('.img-change-bg').removeClass('border-white-md');
+        $(this).addClass('border-white-md');
+        $('#kt_body').css('background-image', 'url(/assets/img/bg/bg-'+ background +'.jpg)');
     });
 
+    $(document.body).on('change', '#darkmode_input', function(){
+        let darkmode = ($(this).is(':checked') === true) ? 'checked' : 'unchecked';
+        $.get("{{ path('app_change_setting') }}", {setting: JSON.stringify({darkmode: darkmode})}, function(data){
+            console.log(data);
+        });
+    });
+
+    $(document.body).on('change', '#language_input', function(){
+        let language = $(this).val();
+        $.get("{{ path('app_change_setting') }}", {setting: JSON.stringify({language: language})}, function(data){
+            console.log(data);
+        });
+    });
     
 
     $('a[data-page]').on('click', function(){
@@ -31,7 +48,6 @@
         let page = $(this).data('page');
         let position = $(this).data('pos');
         
-        console.log($('body').attr('data-float-page') === position);
         if ($('body').attr('data-float-page') === position) {
             $('.window[data-pos]').removeClass('window-active');
             $('.window[data-pos=off]').addClass('window-active');
@@ -51,6 +67,7 @@
             if (data.html !== false)
                 $('#'+page).find('div').html(data.html);
 
+            $('title').text(page+' - ancrom.com');
             $('.float-page').removeClass('float-page-center');
             $('#'+page).addClass('float-page-center');
             $('body').removeClass(function (index, css) {

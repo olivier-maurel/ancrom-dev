@@ -1,5 +1,6 @@
 <script>
     function returnCenterPage() {
+        $('title').text('desktop - ancrom.com');
         $('body').attr('data-float-page', 'off');
         $('.float-page-center').removeClass('float-page-center');
         $('a[data-page]').removeClass('btn-active');
@@ -12,23 +13,47 @@
     
     function eventKeyUp(e) {
 
-        if (e.keyCode === 27 || e.keyCode === 38 && $('#project').hasClass('float-page-center') === true) // Escape
+        if (e.keyCode === 38 && $('#project').hasClass('float-page-center') === true) // Top
             returnCenterPage();
 
-        if (!e.ctrlKey) 
-            return;
-        else if (e.keyCode === 37) // Left
-            if ($('body').attr('data-float-page') === 'right')
-                returnCenterPage();
-            else
-                $('a[data-pos=left]').first().click();
-        else if (e.keyCode === 39) // Right
-            if ($('body').attr('data-float-page') === 'left')
-                returnCenterPage();
-            else
-                $('a[data-pos=right]').first().click();
-        else if (e.keyCode === 40 ) // Bottom && $('#profil').hasClass('float-page-center') === false && $('#contact').hasClass('float-page-center') === false
-            $('a[data-pos=bottom]').first().click();
+        if (e.keyCode === 27 )
+            closeAll();
+
+        if (e.altKey) {
+            console.log(e.keyCode);
+            if (e.keyCode === 65) // Application
+                $('span[data-app=application]').click();
+            else if (e.keyCode === 83) // Setting
+                $('#settings').click();
+            else if (e.keyCode === 66) // Background
+                $('.menu span[data-app=setting_background]').click();
+            else if (e.keyCode === 75) // Darkmode
+                $('.menu span[data-app=setting_darkmode]').click();
+            else if (e.keyCode === 76) // Language
+                $('.menu span[data-app=setting_language]').click();
+            else if (e.keyCode === 67) // ShortCut
+                $('.menu span[data-app=setting_shortcut]').click();
+            else if (e.keyCode === 73) // Information
+                $('.menu span[data-app=setting_information]').click();
+        }
+
+        if (e.ctrlKey) {
+            closeAll();
+            if (e.keyCode === 37) // Left
+                if ($('body').attr('data-float-page') === 'right')
+                    returnCenterPage();
+                else
+                    $('a[data-pos=left]').first().click();
+            else if (e.keyCode === 39) // Right
+                if ($('body').attr('data-float-page') === 'left')
+                    returnCenterPage();
+                else
+                    $('a[data-pos=right]').first().click();
+            else if (e.keyCode === 40 ) // Bottom && $('#profil').hasClass('float-page-center') === false && $('#contact').hasClass('float-page-center') === false
+                $('a[data-pos=bottom]').first().click();
+        }
+            
+        
     }
 
     function setDatetime() {
@@ -38,5 +63,14 @@
         let text = month+' '+dt.getDate()+"     "+time;
         if (text !== $('#datetime').text())
             $('#datetime').html(text);
+    }
+
+    function closeAll() {
+        $('.menu-sub').removeClass('show');
+        $('#win_app').removeClass('show').removeAttr('data-current-app');
+    }
+
+    function openWinApp() {
+
     }
 </script>

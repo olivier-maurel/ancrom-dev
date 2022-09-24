@@ -3,17 +3,17 @@
         <ul class="list-unstyled">
             <li>
                 <span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_background" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                    <i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i>Backgrounds
+                    <i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i>Background
                 </span>
             </li>
             <li>
                 <span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_darkmode" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                    <i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i>Dark mode
+                    <i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i>Darkmode
                 </span>
             </li>
             <li>
                 <span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_information" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                    <i class="fa fa-question me-1 w-20px" style="font-size: small !important"></i>Informations
+                    <i class="fa fa-question me-1 w-20px" style="font-size: small !important"></i>Information
                 </span>
             </li>
             <li>
@@ -23,12 +23,12 @@
             </li>
             <li>
                 <span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_shortcut" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                    <i class="fa fa-keyboard me-1 w-20px" style="font-size: small !important"></i>Shortcuts
+                    <i class="fa fa-keyboard me-1 w-20px" style="font-size: small !important"></i>Shortcut
                 </span>
             </li>   
         </ul>
     </div>
-    <div class="col-8">
+    <div class="col-8 overflow-auto">
         <div class="{{ (param != 'background') ? 'd-none' }}">
             <div class="mb-5">
                 <span class="h6 mb-0 d-block text-white-soft">Background</span>
@@ -36,42 +36,42 @@
             </div>
             <div class="row d-flex p-5" style="background-color: #ffffff03;">
                 <div class="col-3 d-flex justify-content-center my-9">
-                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25 border border-transparent {{ (setting.background is defined and setting.background == 8) ? 'border-white-md' }}" data-bg="8">
                         <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-8.jpg') }}">
                     </div>  
                 </div>
                 <div class="col-3 d-flex justify-content-center my-9">
-                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25 border border-transparent {{ (setting.background is defined and setting.background == 7) ? 'border-white-md' }}" data-bg="7">
                         <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-7.jpg') }}">
                     </div>  
                 </div>
                 <div class="col-3 d-flex justify-content-center my-9">
-                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25 border border-transparent {{ (setting.background is defined and setting.background == 6) ? 'border-white-md' }}" data-bg="6">
                         <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-6.jpg') }}">
                     </div>  
                 </div>
                 <div class="col-3 d-flex justify-content-center my-9">
-                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25 border border-transparent {{ (setting.background is defined and setting.background == 5) ? 'border-white-md' }}" data-bg="5">
                         <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-5.jpg') }}">
                     </div>  
                 </div>
                 <div class="col-3 d-flex justify-content-center my-9">
-                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25 border border-transparent {{ (setting.background is defined and setting.background == 4) ? 'border-white-md' }}" data-bg="4">
                         <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-4.jpg') }}">
                     </div>  
                 </div>
                 <div class="col-3 d-flex justify-content-center my-9">
-                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25 border border-transparent {{ (setting.background is defined and setting.background == 3) ? 'border-white-md' }}" data-bg="3">
                         <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-3.jpg') }}">
                     </div>  
                 </div>
                 <div class="col-3 d-flex justify-content-center my-9">
-                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25 border border-transparent {{ (setting.background is defined and setting.background == 2) ? 'border-white-md' }}" data-bg="2">
                         <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-2.jpg') }}">
                     </div>  
                 </div>
                 <div class="col-3 d-flex justify-content-center my-9">
-                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25">
+                    <div class="btn p-0 img-change-bg overflow-hidden btn-rounded bg-dark bg-opacity-25 border border-transparent {{ (setting.background is defined and setting.background == 1) ? 'border-white-md' }}" data-bg="1">
                         <img class="h-100px" style="object-fit: cover;" src="{{ asset('img/bg/bg-1.jpg') }}">
                     </div>  
                 </div>
@@ -84,13 +84,97 @@
             <h1>information</h1>
         </div>
         <div class="{{ (param != 'shortcut') ? 'd-none' }}">
-            <h1>shortcut</h1>
+            <div class="mb-5">
+                <span class="h6 mb-0 d-block text-white-soft">Shortcuts</span>
+                <span class="text-muted">Display keyboard shortcuts to navigate the application</span>
+            </div>
+            <div class="text-white-soft">
+                <table class="table table-dark text-white-soft table-hover">
+                    <thead>
+                        <tr class="fw-bold">
+                            <th>function</th>
+                            <th>command</th>
+                        </tr>
+                    </thead>
+                    <tbody class="small no-cursor">
+                        <tr>
+                            <td class="ps-3">Display site map</td>
+                            <td class="pe-3 text-end"><small class="pe-3">(long press)</small><strong class="badge badge-secondary">Ctrl</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Go to profile page</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Ctrl</strong> + <strong class="badge badge-secondary">◄</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Go to contact page</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Ctrl</strong> + <strong class="badge badge-secondary">►</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Go to projects page</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Ctrl</strong> + <strong class="badge badge-secondary">▼</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Close all windows</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Echap</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Open window applications</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Alt</strong> + <strong class="badge badge-secondary">A</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Open window settings</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Alt</strong> + <strong class="badge badge-secondary">S</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Open window background</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Alt</strong> + <strong class="badge badge-secondary">B</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Open window dark mode</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Alt</strong> + <strong class="badge badge-secondary">K</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Open window language</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Alt</strong> + <strong class="badge badge-secondary">L</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Open window shortcuts</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Alt</strong> + <strong class="badge badge-secondary">C</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="ps-3">Open window information</td>
+                            <td class="pe-3 text-end"><strong class="badge badge-secondary">Alt</strong> + <strong class="badge badge-secondary">I</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="{{ (param != 'language') ? 'd-none' }}">
-            <h1>language</h1>
+            <div class="mb-5">
+                <span class="h6 mb-0 d-block text-white-soft">Language</span>
+                <span class="text-muted">Choice your language (english default)</span>
+            </div>
+            <div>
+                <select id="language_input" class="form-control">
+                    <option {{ (setting.language is defined and setting.language == 'en') ? 'selected' }} value="en">English</option>
+                    <option {{ (setting.language is defined and setting.language == 'fr') ? 'selected' }} value="fr">Français</option>
+                </select>
+            </div>
         </div>
         <div class="{{ (param != 'darkmode') ? 'd-none' }}">
-            <h1>darkmode</h1>
+            <div class="mb-5">
+                <span class="h6 mb-0 d-block text-white-soft">Darkmode</span>
+                <span class="text-muted">Enable the dark mode</span>
+            </div>
+            <div>
+                <div class="d-flex justify-content-start">
+                    <div class="form-check form-check-solid form-switch">
+                        <input class="form-check-input w-45px h-30px" type="checkbox" id="darkmode_input" 
+                        {{ (setting.darkmode is defined) ? setting.darkmode : 'checked' }}>
+                        <label class="form-check-label" for="darkmode_input"></label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -177,9 +177,25 @@ body {
     justify-content: center;
     align-items: center;
 }
+#win_app {
+    display: none;
+}
+#win_app.show {
+    display: flex;
+}
 .win-app {
     background-color: rgba(61, 61, 61, 0.904);
 }
 .border-white-soft {
     border-color: #fff1 !important;
+}
+.border-white-md {
+    border-color: #fffb !important;
+}
+.table {
+    --bs-table-hover-bg: #fff1 !important;
+    transition: .2s;
+}
+.no-cursor, .no-cursor * {
+    cursor: default;
 }

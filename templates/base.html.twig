@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>desktop - ancrom.com</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <link href="{{ asset('css/framework.css') }}" rel="stylesheet" type="text/css">
         <!-- <link href="{{ asset('css/plugins.css') }}" rel="stylesheet" type="text/css"> -->
@@ -23,7 +23,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body id="kt_body" class="toolbar-enabled overflow-hidden bg-body" data-kt-sticky-header="on" data-kt-header="on" data-kt-scrolltop="on" data-float-page="off" style="background-image: {{ (setting.background is defined) ? setting.background : 'url('~ asset('img/bg/bg-8.jpg') ~')' }};">        
+    <body id="kt_body" class="toolbar-enabled overflow-hidden bg-body" data-kt-sticky-header="on" data-kt-header="on" data-kt-scrolltop="on" data-float-page="off" style="background-image: url({{ asset('img/bg/bg-'~ ((setting.background is defined) ? setting.background : '8') ~'.jpg') }});">        
         <div id="container" class="d-flex flex-column flex-root">
 			<!--begin::Page-->
 			<div class="page d-flex flex-column flex-column-fluid">
@@ -98,7 +98,7 @@
 			<div class="position-fixed d-flex justify-content-between top-0 start-0 w-100 px-2" style="height: 30px; z-index: 999; background-color: rgba(61, 61, 61, 0.904);">
 				<div class="col-4 d-flex justify-content-start align-items-center">
 					<span data-app="application" class="btn btn-sm btn-os text-white-soft text-code fw-bold btn-win-app">
-						<!-- <i class="fa fa-bars text-white"></i> --> Applications
+						<!-- <i class="fa fa-bars text-white"></i> --> <u>A</u>pplications
 					</span>
 				</div>
 				<div class="col-4 d-flex justify-content-center align-items-center">
@@ -106,7 +106,7 @@
 				</div>
 				<div class="col-4 d-flex justify-content-end align-items-center">
 					<span id="settings" class="btn btn-sm btn-os text-white-soft text-code fw-bold menu-dropdown" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-						<!-- <i class="fa fa-bars text-white"></i> --> Settings
+						<!-- <i class="fa fa-bars text-white"></i> --> <u>S</u>ettings
 					</span>
 						
 					<div class="menu menu-sub menu-sub-dropdown menu-column w-250px w-lg-325px win-app menu-setting position-absolute mt-2 p-6" data-kt-menu="true">
@@ -136,19 +136,19 @@
 						</div>
 						<div class="border-top border-white-soft py-3 my-3 row">
 							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_background" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-								<i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i>Backgrounds
+								<i class="fa fa-tv me-1 w-20px" style="font-size: small !important"></i><u>B</u>ackgrounds
 							</span>
 							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_darkmode" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-								<i class="fa fa-moon me-1 w-20px" style="font-size: small !important"></i>Dark mode
+								<i class="fa fa-moon me-1 w-20px" style="font-size: small !important"></i>Dar<u>k</u> mode
 							</span>
 							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_language" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-								<i class="fa fa-globe me-1 w-20px" style="font-size: small !important"></i>Languages
+								<i class="fa fa-globe me-1 w-20px" style="font-size: small !important"></i><u>L</u>anguages
 							</span>
 							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_shortcut" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-								<i class="fa fa-keyboard me-1 w-20px" style="font-size: small !important"></i>Shortcuts
+								<i class="fa fa-keyboard me-1 w-20px" style="font-size: small !important"></i>Short<u>c</u>uts
 							</span>
 							<span class="btn btn-sm btn-os btn-win-app text-white-soft text-code fw-bold menu-dropdown justify-content-start" data-app="setting_information" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-								<i class="fa fa-question me-1 w-20px" style="font-size: small !important"></i>Informations
+								<i class="fa fa-question me-1 w-20px" style="font-size: small !important"></i><u>I</u>nformations
 							</span>
 						</div>
 					</div>
@@ -170,9 +170,9 @@
 					</div>
 				</div>
 			</div>
-			<div id="win_app" class="float-page init-page d-flex d-none" style="padding-top: 7rem;">
+			<div id="win_app" class="float-page init-page" style="padding-top: 7rem;">
 				<div class="col-lg-7 col-md-9 col-sm-12 mx-auto">
-					<div class="card win-app p-1" style="min-height: 40vh;">
+					<div class="card win-app p-1" style="min-height: 40vh; max-height: 60vh;">
 						<div class="card-head d-flex justify-content-between position-relative">
 							<div id="win_app_head" class="col-12">
 
