@@ -47,6 +47,7 @@
 
         let page = $(this).data('page');
         let position = $(this).data('pos');
+        let load = ($('#'+page).attr('data-load') === 'true');
         
         if ($('body').attr('data-float-page') === position) {
             $('.window[data-pos]').removeClass('window-active');
@@ -59,24 +60,34 @@
             $(this).addClass('btn-active');
         }
             
-
         if ($('body').attr('data-float-page') !== 'on' && $('#'+$(this).data('page')).hasClass('float-page-center'))
                 return returnCenterPage();
 
-        $.get("{{ path('app_change_page') }}", {page: $(this).data('page')}, function(data){
-            if (data.html !== false)
-                $('#'+page).find('div').html(data.html);
+        if (load == false)
+            $.ajax({
+                method : "GET",
+                url : "{{ path('app_change_page') }}",
+                data: {page: $(this).data('page')},
+                async: false,
+                success : function(data) {
+                    $('#'+page).attr('data-load', true);
+                    $('#'+page).find('div').html(data.html);
+                    load = true;
+                },
+                error: function() {
+                    connectionError();
+                }
+            });
 
-            $('title').text(page+' - ancrom.com');
+        if (load == true) {
+            $('title').text(page + ' - ancrom.com');
             $('.float-page').removeClass('float-page-center');
             $('#'+page).addClass('float-page-center');
             $('body').removeClass(function (index, css) {
                 return (css.match (/\bbg-pos-\S+/g) || []).join(' '); // removes anything that starts with "page-"
             });
             $('body').attr('data-float-page', position).addClass('bg-pos-'+position);
-            
-            
-        });
+        }
 
     });
 
