@@ -2,6 +2,9 @@
     $('#win_app_close').on('click', function(){
         $('#win_app').removeClass('show');
     });
+    $('#welcome_close').on('click', function(){
+        $('#welcome').addClass('d-none');
+    });
     $(document.body).on('click', '.btn-win-app', function(){
         let app = $(this).data('app');
         $('.menu-setting').removeClass('show');
@@ -10,7 +13,6 @@
             return $('#win_app').removeClass('show').removeAttr('data-current-app');
 
         $.get("{{ path('app_change_window') }}", {app: app}, function(data){
-            
             $('#win_app_head').html(data.html.head);
             $('#win_app_body').html(data.html.body);
             $('#win_app').addClass('show').attr('data-current-app', app);
@@ -87,6 +89,7 @@
                 return (css.match (/\bbg-pos-\S+/g) || []).join(' '); // removes anything that starts with "page-"
             });
             $('body').attr('data-float-page', position).addClass('bg-pos-'+position);
+            $('#welcome').addClass('top-up');
         }
 
     });
