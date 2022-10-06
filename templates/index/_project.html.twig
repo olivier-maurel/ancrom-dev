@@ -1,14 +1,10 @@
 <div class="d-flex flex-wrap w-100 h-100 p-9">
+    {% for application in applications %}
     <div class="w-100px h-100px btn btn-app m-8">
-        <i class="fa fa-user text-primary"><i class="fa fa-share"></i></i>
-        <small>Manamone</small>
+        <i class="fa fa-{{ application.icon }} text-primary">
+            <i class="fa fa-share"></i>
+        </i>
+        <small>{{ application.name }}</small>
     </div>
-    <div class="w-100px h-100px btn btn-app m-8">
-        <i class="fa fa-video text-danger"></i>
-        <small>Warchiv</small>
-    </div>
-    <div class="w-100px h-100px btn btn-app m-8">
-        <i class="fa fa-code text-success"></i>
-        <small>AncrTerm</small>
-    </div>
+    {% endfor %}
 </div>

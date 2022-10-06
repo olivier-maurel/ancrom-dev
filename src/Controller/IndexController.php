@@ -33,12 +33,15 @@ class IndexController extends AbstractController
     }
 
     #[Route('/change/page', name: 'app_change_page')]
-    public function changePage(Request $request): Response
+    public function changePage(Request $request, ApplicationService $appService): Response
     {
         $page = $request->query->get('page');
 
-        if (is_file('../templates/index/_'.$page.'.html.twig'))
-            $html = $this->renderView('index/_'.$page.'.html.twig');
+        if (is_file('../templates/index/_'.$page.'.html.twig')) 
+            $html = $this->renderView(
+                'index/_'.$page.'.html.twig', 
+                $appService->getParametersPage($page)
+            );
         else 
             $html = false;
 
