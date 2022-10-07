@@ -74,4 +74,68 @@
     function openWinApp() {
 
     }
+
+    function handlerShortcuts(shortcut) {
+        let action = shortcut.data('action');
+        window[action + 'Action'](shortcut);
+    }
+
+    /* 
+     * CopyAction
+     * Copy a string in the clipboard
+     * @param shortcut string
+     */
+    function copyAction(shortcut) {
+
+        let copy = shortcut.data('copy');
+        let tmp = $("<input>");
+        $("body").append(tmp);
+        tmp.val(copy).select();
+        document.execCommand("copy");
+        tmp.remove();
+
+    }
+
+    /* 
+     * mailtoAction
+     * Send email from default messenger
+     * @param shortcut string
+     */
+    function mailtoAction(shortcut) {
+        let mailto = shortcut.data('mailto');
+        window.location = 'mailto:' + mailto
+    }
+
+    function windowAction(shortcut) {
+        let application = shortcut.data('id');
+        $('.menu-setting').removeClass('show');
+
+        $.get("{{ path('app_display_window') }}", {application: application}, function(data){
+            $('#win_app_head').html(data.html.head);
+            $('#win_app_body').html(data.html.body);
+            $('#win_app').addClass('show').attr('data-current-app', app);
+        });
+    }
+
+    function fileAction(shortcut) {
+        // $.get("{{ path('app_open_file') }}", {file: shortcut.data('file')}, function(data){
+        //     console.log(data);
+        // });
+        let a = $('<a>').attr({'target': '_blank', 'href': "{{ path('app_open_file') }}?file="+encodeURIComponent(shortcut.data('file')) });
+        $("body").append(a);
+        a[0].click();
+        a.remove();
+    }
+
+    /* 
+     * linkAction
+     * Redirect in the new tab from url
+     * @param shortcut string
+     */
+    function linkAction(shortcut) {
+        let a = $('<a>').attr({'target': '_blank', 'href': shortcut.data('link')});
+        $("body").append(a);
+        a[0].click();
+        a.remove();
+    }
 </script>

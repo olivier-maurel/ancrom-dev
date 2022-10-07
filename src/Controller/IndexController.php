@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Application;
+use App\Repository\ApplicationRepository;
 use App\Service\ApplicationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,7 +43,7 @@ class IndexController extends AbstractController
 
         if (is_file('../templates/index/_'.$page.'.html.twig')) 
             $html = $this->renderView(
-                'index/_'.$page.'.html.twig', 
+                'index/_page.html.twig', 
                 $appService->getParametersPage($page)
             );
         else 
@@ -84,6 +88,29 @@ class IndexController extends AbstractController
 
         return new JsonResponse([
             'html' => 'ok'
+        ]);
+    }
+
+    #[Route('/open/file', name: 'app_open_file')]
+    public function openFile(Request $request): BinaryFileResponse
+    {
+        $file = $request->query->get('file');
+
+        return new BinaryFileResponse('assets/file/'.$file);
+    }
+
+    #[Route('/display/window', name: 'app_display_window')]
+    public function displayWindow(Request $request, ApplicationRepository $applicationRepository): Response
+    {
+        $idApp     = $request->query->get('application');
+        $application = $applicationRepository->findOneById($idApp);
+        $content = $application->getApplicationContent();
+
+        return new JsonResponse([
+            'html' => [
+                'head' => $content->getHeader(),
+                'body' => $content->getBody()
+            ]
         ]);
     }
 }

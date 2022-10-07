@@ -42,9 +42,11 @@ class ApplicationService
     {
         switch ($page) {
             case 'project':
-                return ['applications' => $this->em->getRepository(Application::class)->findAll()];
+                return ['applications' => $this->em->getRepository(Application::class)->findByPage('project')];
                 break;
-            
+            case 'profile':
+                return ['applications' => $this->em->getRepository(Application::class)->findByPage('profile')];
+                break;
             default:
                 # code...
                 break;

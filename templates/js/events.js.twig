@@ -1,4 +1,7 @@
 <script>
+    $(document.body).on('click', '.btn-shortcut', function(){
+        handlerShortcuts($(this));
+    });
     $('#win_app_close').on('click', function(){
         $('#win_app').removeClass('show');
     });

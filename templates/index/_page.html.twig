@@ -1,6 +1,14 @@
+
+{% if applications is defined %}
 <div class="d-flex flex-wrap w-100 h-100 p-9">
     {% for application in applications %}
-    <div class="w-100px h-100px btn btn-app m-8">
+    {% set 
+        dataAction = 
+            (application.action != 'window') ? 
+            'data-'~application.action~'='~ attribute(application.applicationContent.json, application.action) : 
+            'data-id=' ~ application.id 
+    %}
+    <div data-action="{{ application.action }}" {{ dataAction }} class="w-100px h-100px btn btn-app btn-shortcut m-8">
         <i class="fa fa-{{ application.icon }}" style="color: {{ application.color }};">
             <i class="fa fa-{{ (application.action == 'window') ? 'window-restore' : 'share' }}"></i>
         </i>
@@ -9,3 +17,4 @@
     </div>
     {% endfor %}
 </div>
+{% endif %}
