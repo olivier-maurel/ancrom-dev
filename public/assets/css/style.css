@@ -229,3 +229,15 @@ body {
 .init-page.top-up {
     top: -100% !important;
 }
+.btn-orange {
+    background-color: rgb(226, 173, 74);
+}
+.btn-orange:hover {
+    background-color: rgb(216, 162, 61);
+}
+.btn-primary {
+    background-color: rgb(97, 74, 226);
+}
+.btn-primary:hover {
+    background-color: rgb(76, 61, 216);
+}

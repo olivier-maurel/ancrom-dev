@@ -10,7 +10,7 @@
     %}
     <div data-action="{{ application.action }}" {{ dataAction }} class="w-100px h-100px btn btn-app btn-shortcut m-8">
         <i class="fa fa-{{ application.icon }}" style="color: {{ application.color }};">
-            <i class="fa fa-{{ (application.action == 'window') ? 'window-restore' : 'share' }}"></i>
+            <i class="fa {{ application.action | getMiniIcon }}"></i>
         </i>
         <small>{{ application.name }}</small>
         <small>{{ (application.processing == true) ? 'IN DEV' }}</small>

@@ -1,4 +1,4 @@
-<div class="row topbar position-relative bg-transparent d-flex h-100">
+<!-- <div class="row topbar position-relative bg-transparent d-flex h-100">
     <div class="">
         <a class="btn btn-icon btn-custom w-lg-100px h-lg-100px w-100px h-100px w-sm-90px h-sm-90px flex-column justify-content-center bg-transparent" data-page="profil" data-pos="left" id="kt_activities_toggle">
             <span class="svg-icon svg-icon-1 d-flex align-items-center flex-column mt-3">
@@ -6,5 +6,40 @@
             </span>
             <span class="text-center d-block mt-3 text-white-soft">Calculator</span>
         </a>
+    </div>
+</div> -->
+<div class="row topbar position-relative bg-transparent d-flex h-100 overflow-auto">
+    <div class="d-flex flex-column justify-content-between">
+        <div>
+            <h1>{{ application.name }}</h1>
+            <a class="w-lg-100px h-lg-100px w-100px h-100px w-sm-90px h-sm-90px flex-column justify-content-center bg-transparent" data-page="profil" data-pos="left" id="kt_activities_toggle">
+                <span class="svg-icon svg-icon-1 d-flex align-items-center flex-column mt-3">
+                    <i class="fa fa-{{ application.icon }}" style="font-size: 3rem !important; color: {{ application.color }};"></i>
+                </span>
+            </a>
+        </div>
+        <div class="">
+            {% if application.applicationContent.json.link is defined %}
+            <a href="{{ application.applicationContent.json.link }}" class="btn btn-sm btn-{{ (application.processing == true) ? 'orange' : 'primary' }}">
+                {{ (application.processing == true) ? 'Projet en développement' : 'Accéder au projet' }}
+            </a>
+            {% endif %}
+            {% if application.applicationContent.json.git is defined %}
+            <a href="{{ application.applicationContent.json.git }}" class="btn btn-sm btn-os">  
+                <i class="devicon-github-original" style="font-size: 1.4rem;"></i>
+                Accéder au github
+            </a>
+            {% endif %}
+        </div>
+        <div>
+            <p>{{ application.about }}</p>
+        </div>
+        <div class="row border-top border-white-soft mx-0 pt-5 overflow-x-auto">
+            {% for technology in application.technologies %}
+                <a href="{{ technology.link }}" target="_blank" class="w-lg-60px h-lg-60px w-50px h-50px w-sm-30px h-sm-30px btn btn-os mx-3" title="{{ technology.name | upper }} - {{ technology.link }}">
+                    {{ technology.icon | raw }}
+                </a>
+            {% endfor %}
+        </div>
     </div>
 </div>

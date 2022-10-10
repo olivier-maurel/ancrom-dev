@@ -43,6 +43,9 @@ class Application
     #[ORM\ManyToMany(targetEntity: Technology::class, mappedBy: 'application')]
     private Collection $technologies;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $createdAt = null;
+
     public function __construct()
     {
         $this->technologies = new ArrayCollection();
@@ -177,6 +180,18 @@ class Application
         if ($this->technologies->removeElement($technology)) {
             $technology->removeApplication($this);
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

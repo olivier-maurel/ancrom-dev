@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
 class IndexController extends AbstractController
 {
@@ -100,16 +101,20 @@ class IndexController extends AbstractController
     }
 
     #[Route('/display/window', name: 'app_display_window')]
-    public function displayWindow(Request $request, ApplicationRepository $applicationRepository): Response
+    public function displayWindow(Request $request, ApplicationRepository $applicationRepository, Environment $twig): Response
     {
         $idApp     = $request->query->get('application');
         $application = $applicationRepository->findOneById($idApp);
         $content = $application->getApplicationContent();
+        
+        // $header = $twig->createTemplate($content->getHeader());
+        $header = $this->renderView('window/'.$content->getBody().'/_head.html.twig', ['application' => $application]);
+        $body = $this->renderView('window/'.$content->getBody().'/_body.html.twig', ['application' => $application]);
 
         return new JsonResponse([
             'html' => [
-                'head' => $content->getHeader(),
-                'body' => $content->getBody()
+                'head' => $header,
+                'body' => $body
             ]
         ]);
     }
