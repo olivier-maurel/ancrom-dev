@@ -1,6 +1,7 @@
 <?php
 namespace App\Extension;
 
+use DOMDocument;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -11,6 +12,7 @@ class ApplicationExtension extends AbstractExtension
     {
         return [
             new TwigFilter('getMiniIcon', [$this, 'getMiniIcon']),
+            new TwigFilter('getFavicon', [$this, 'getFavicon']),
         ];
     }
 
@@ -39,9 +41,15 @@ class ApplicationExtension extends AbstractExtension
         return $fa;
     }
 
-    // public function getTechnologyIcon(string $technology): string
-    // {
+    public function getFavicon($url)
+    {
+        $favicon = '<img width="37px" height="37px" src="https://www.google.com/s2/favicons?sz=64&domain='. $url .'">';
+        $headers = get_headers($url);
 
-    // }
+        if (preg_match("|200|", $headers[0]))
+            return $favicon;
+
+        return $favicon;
+    }
 
 }

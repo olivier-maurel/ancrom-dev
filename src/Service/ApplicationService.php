@@ -40,17 +40,12 @@ class ApplicationService
 
     public function getParametersPage(string $page)
     {
-        switch ($page) {
-            case 'project':
-                return ['applications' => $this->em->getRepository(Application::class)->findByPage('project')];
-                break;
-            case 'profile':
-                return ['applications' => $this->em->getRepository(Application::class)->findByPage('profile')];
-                break;
-            default:
-                # code...
-                break;
-        }
-        return [];
+        $applicationRepository  = $this->em->getRepository(Application::class);
+        $authorizedPage         = ['profile', 'project', 'contact', 'index'];
+
+        if (in_array($page, $authorizedPage))
+            return ['applications' => $applicationRepository->findByPage($page)];
+        
+        return $applicationRepository->findAll();
     }
 }
