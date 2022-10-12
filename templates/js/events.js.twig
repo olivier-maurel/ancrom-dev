@@ -19,7 +19,6 @@
             $('#win_app_head').html(data.html.head);
             $('#win_app_body').html(data.html.body);
             $('#win_app').addClass('show').attr('data-current-app', app);
-            
         });
     });
 
@@ -53,11 +52,12 @@
         let page = $(this).data('page');
         let position = $(this).data('pos');
         let load = ($('#'+page).attr('data-load') === 'true');
+        $('a.btn-shortcut').attr('tabindex', '-1');
         
         if ($('body').attr('data-float-page') === position) {
             $('.window[data-pos]').removeClass('window-active');
             $('.window[data-pos=off]').addClass('window-active');
-            $(this).removeClass('btn-active');
+            $(this).removeClass('btn-active'); 
         } else {
             $('.window[data-pos]').removeClass('window-active');
             $('.window[data-pos='+position+']').addClass('window-active');
@@ -93,6 +93,7 @@
             });
             $('body').attr('data-float-page', position).addClass('bg-pos-'+position);
             $('#welcome').addClass('top-up');
+            $('#'+page+' a.btn-shortcut').attr('tabindex', '0');
         }
 
     });

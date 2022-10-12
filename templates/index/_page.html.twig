@@ -8,18 +8,13 @@
             'data-'~application.action~'='~ attribute(application.applicationContent.json, application.action) : 
             'data-id=' ~ application.id 
     %}
-    <div data-action="{{ application.action }}" {{ dataAction }} class="w-100px h-100px btn btn-app btn-shortcut m-8">
-        {% if (application.applicationContent.json.link is defined) %}
-            {{ application.applicationContent.json.link | getFavicon | raw }}
+    <a href="#" data-action="{{ application.action }}" {{ dataAction }} class="w-100px h-100px btn btn-app btn-shortcut m-8">
+        <i class="{{ application.icon }}" >
             <i class="fa {{ application.action | getMiniIcon }}"></i>
-        {% else %}
-            <i class="fa fa-{{ application.icon }}" style="color: {{ application.color }};">
-                <i class="fa {{ application.action | getMiniIcon }}"></i>
-            </i>
-        {% endif %}
+        </i>
         <small>{{ application.name }}</small>
         <small>{{ (application.processing == true) ? 'IN DEV' }}</small>
-    </div>
+    </a>
     {% endfor %}
 </div>
 {% endif %}
